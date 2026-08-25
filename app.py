@@ -12,7 +12,7 @@ headers = {
 
 if GITHUB_TOKEN:
     headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
-
+headers["Accept"] = "application/vnd.github+json"
 # -----------------------------
 # DATABASE FUNCTIONS
 # -----------------------------
