@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Leaderboard | Student Skill Platform</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <h2>Student Skill Platform</h2>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/analyze">Analyze</a>
+
+        <a href="/leaderboard">Leaderboard</a>
+
+    </div>
+
+</nav>
+
+
+<!-- LEADERBOARD -->
+
+<section class="leaderboard-page">
+
+    <h1>🏆 Student Leaderboard</h1>
+
+    <p class="leaderboard-subtitle">
+
+        Students ranked based on their
+        GitHub Skill Index and activity.
+
+    </p>
+
+
+    {% if students %}
+
+        <div class="leaderboard-container">
+
+            {% for student in students %}
+
+                <div class="leaderboard-card">
+
+
+                    <!-- RANK -->
+
+                    <div class="rank">
+
+                        {% if loop.index == 1 %}
+
+                            🥇
+
+                        {% elif loop.index == 2 %}
+
+                            🥈
+
+                        {% elif loop.index == 3 %}
+
+                            🥉
+
+                        {% else %}
+
+                            #{{ loop.index }}
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- PROFILE IMAGE -->
+
+                    {% if student["avatar"] %}
+
+                        <img
+                            src="{{ student['avatar'] }}"
+                            alt="{{ student['username'] }}"
+                            class="leaderboard-avatar"
+                        >
+
+                    {% endif %}
+
+
+                    <!-- STUDENT DETAILS -->
+
+                    <div class="student-details">
+
+                        <h2>
+
+                            {{ student["name"] }}
+
+                        </h2>
+
+                        <p class="leaderboard-username">
+
+                            @{{ student["username"] }}
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- SKILL LEVEL -->
+
+                    <div class="leaderboard-level">
+
+                        <span>
+
+                            {{ student["skill_level"] }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- SCORE -->
+
+                    <div class="leaderboard-score">
+
+                        <h2>
+
+                            {{ student["skill_index"] }}
+
+                        </h2>
+
+                        <p>Skill Index</p>
+
+                    </div>
+
+
+                    <!-- COMMITS -->
+
+                    <div class="leaderboard-commits">
+
+                        <strong>
+
+                            {{ student["total_commits"] }}
+
+                        </strong>
+
+                        <p>Recent Commits</p>
+
+                    </div>
+
+
+                    <!-- ACTIVITY -->
+
+                    <div class="leaderboard-activity">
+
+                        {{ student["activity_level"] }}
+
+                    </div>
+
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <div class="empty-leaderboard">
+
+            <h2>No Students Yet</h2>
+
+            <p>
+
+                Analyze a GitHub profile to add
+                the first student to the leaderboard.
+
+            </p>
+
+            <a
+                href="/analyze"
+                class="button"
+            >
+
+                Analyze a Student
+
+            </a>
+
+        </div>
+
+    {% endif %}
+
+
+</section>
+
+
+</body>
+
+</html>

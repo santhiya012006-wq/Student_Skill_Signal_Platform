@@ -1,0 +1,868 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #081421;
+    color: white;
+}
+
+
+/* NAVIGATION */
+
+nav {
+    background-color: #102a43;
+    padding: 18px 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.nav-links a:hover {
+    color: #20a4f3;
+}
+
+
+/* BUTTON */
+
+.button,
+.repo-button,
+form button {
+    display: inline-block;
+
+    background-color: #20a4f3;
+    color: white;
+
+    text-decoration: none;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 12px 20px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+.button:hover,
+.repo-button:hover,
+form button:hover {
+    opacity: 0.85;
+}
+
+
+/* HOME PAGE */
+
+.hero {
+    min-height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+
+.hero p {
+    max-width: 600px;
+    color: #b0bec5;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+
+.message {
+    margin-top: 20px;
+}
+
+
+/* ANALYZE PAGE */
+
+.analyze-page {
+    min-height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+}
+
+
+.analyze-card {
+    width: 100%;
+    max-width: 550px;
+
+    background-color: #102a43;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+
+.analyze-card h1 {
+    margin-bottom: 15px;
+}
+
+
+.analyze-card p {
+    color: #b0bec5;
+    margin-bottom: 25px;
+}
+
+
+.analyze-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.analyze-card input {
+    padding: 15px;
+
+    border-radius: 8px;
+    border: none;
+
+    font-size: 16px;
+}
+
+
+.error-message {
+    background-color: #5c1f1f;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+
+/* PROFILE */
+
+.result-page {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+
+.profile-card {
+    background-color: #102a43;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    display: flex;
+    gap: 30px;
+
+    align-items: center;
+}
+
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 4px solid #20a4f3;
+}
+
+
+.profile-info {
+    flex: 1;
+}
+
+
+.github-username {
+    color: #20a4f3;
+    margin: 8px 0;
+}
+
+
+.bio {
+    color: #b0bec5;
+    margin-bottom: 20px;
+}
+
+
+.profile-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+
+.stat {
+    background-color: #081421;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 100px;
+}
+
+
+.stat h3 {
+    color: #20a4f3;
+}
+
+
+/* SKILL INDEX */
+
+.skill-index-section,
+.dashboard-section,
+.activity-section,
+.skills-section,
+.repositories-section {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+
+.skill-index-section > h2,
+.dashboard-section > h2,
+.activity-section > h2,
+.skills-section > h2,
+.repositories-section > h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.skill-index-card {
+    background-color: #102a43;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 2fr;
+
+    gap: 30px;
+}
+
+
+.main-score {
+    background-color: #081421;
+
+    border: 2px solid #20a4f3;
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+
+.main-score h1 {
+    font-size: 65px;
+    color: #20a4f3;
+}
+
+
+.main-score p {
+    color: #b0bec5;
+}
+
+
+.skill-level {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 20px;
+
+    border-radius: 20px;
+
+    background-color: #20a4f3;
+
+    font-weight: bold;
+}
+
+
+.score-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.score-item {
+    background-color: #081421;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.score-item p {
+    color: #b0bec5;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+.score-item strong {
+    color: #20a4f3;
+    font-size: 18px;
+}
+
+
+/* DASHBOARD */
+
+.dashboard-summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.dashboard-box {
+    background-color: #102a43;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+.dashboard-box h3 {
+    color: #20a4f3;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+
+.dashboard-box p {
+    color: #b0bec5;
+}
+
+
+.charts-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(350px, 1fr));
+
+    gap: 25px;
+}
+
+
+.chart-card {
+    background-color: #102a43;
+
+    padding: 25px;
+
+    border-radius: 15px;
+}
+
+
+.chart-card h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* ACTIVITY */
+
+.activity-card {
+    background-color: #102a43;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 40px;
+}
+
+
+.activity-main {
+    text-align: center;
+
+    background-color: #081421;
+
+    padding: 25px 40px;
+
+    border-radius: 15px;
+
+    border: 2px solid #20a4f3;
+}
+
+
+.activity-main h1 {
+    font-size: 50px;
+    color: #20a4f3;
+}
+
+
+.activity-main p {
+    color: #b0bec5;
+    margin-top: 10px;
+}
+
+
+.activity-information {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+    min-width: 300px;
+}
+
+
+.activity-item {
+    background-color: #081421;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.activity-item strong {
+    color: #20a4f3;
+}
+
+
+/* SKILLS */
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+.skill-tag {
+    background-color: #20a4f3;
+
+    padding: 12px 20px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+}
+
+
+/* REPOSITORIES */
+
+.repositories-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 20px;
+}
+
+
+.repository-card {
+    background-color: #102a43;
+
+    padding: 25px;
+
+    border-radius: 15px;
+}
+
+
+.repository-card h3 {
+    color: #20a4f3;
+    margin-bottom: 12px;
+}
+
+
+.repo-description {
+    color: #b0bec5;
+
+    min-height: 50px;
+
+    margin-bottom: 20px;
+}
+
+
+.repo-details {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    color: #b0bec5;
+}
+
+
+.repo-details span {
+    background-color: #081421;
+
+    padding: 8px;
+
+    border-radius: 6px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+
+    .profile-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+
+    .skill-index-card {
+        grid-template-columns: 1fr;
+    }
+
+
+    .activity-card {
+        flex-direction: column;
+    }
+
+
+    .activity-information {
+        width: 100%;
+        min-width: auto;
+    }
+
+
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .chart-card {
+        min-width: 0;
+    }
+
+}
+/* ============================
+   LEADERBOARD
+============================ */
+
+.leaderboard-page {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+
+.leaderboard-page > h1 {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+
+.leaderboard-subtitle {
+    text-align: center;
+    color: #b0bec5;
+    margin-bottom: 40px;
+}
+
+
+.leaderboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* STUDENT CARD */
+
+.leaderboard-card {
+    background-color: #102a43;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        70px
+        70px
+        1fr
+        120px
+        100px
+        120px
+        150px;
+
+    align-items: center;
+
+    gap: 15px;
+
+    transition: transform 0.2s;
+}
+
+
+.leaderboard-card:hover {
+    transform: translateY(-3px);
+}
+
+
+/* RANK */
+
+.rank {
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: #20a4f3;
+}
+
+
+/* AVATAR */
+
+.leaderboard-avatar {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid #20a4f3;
+}
+
+
+/* STUDENT INFORMATION */
+
+.student-details h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+
+.leaderboard-username {
+    color: #20a4f3;
+    font-size: 14px;
+}
+
+
+/* SKILL LEVEL */
+
+.leaderboard-level span {
+    display: inline-block;
+
+    background-color: #081421;
+
+    color: #20a4f3;
+
+    padding: 8px 12px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* SCORE */
+
+.leaderboard-score {
+    text-align: center;
+}
+
+
+.leaderboard-score h2 {
+    color: #20a4f3;
+    font-size: 28px;
+}
+
+
+.leaderboard-score p {
+    color: #b0bec5;
+    font-size: 12px;
+}
+
+
+/* COMMITS */
+
+.leaderboard-commits {
+    text-align: center;
+}
+
+
+.leaderboard-commits strong {
+    color: #20a4f3;
+    font-size: 20px;
+}
+
+
+.leaderboard-commits p {
+    color: #b0bec5;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+/* ACTIVITY */
+
+.leaderboard-activity {
+    background-color: #081421;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    color: #b0bec5;
+
+    font-size: 13px;
+}
+
+
+/* EMPTY LEADERBOARD */
+
+.empty-leaderboard {
+    background-color: #102a43;
+
+    padding: 50px;
+
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+
+.empty-leaderboard h2 {
+    margin-bottom: 15px;
+}
+
+
+.empty-leaderboard p {
+    color: #b0bec5;
+    margin-bottom: 25px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .leaderboard-card {
+
+        grid-template-columns:
+            60px
+            60px
+            1fr
+            100px;
+
+    }
+
+
+    .leaderboard-commits,
+    .leaderboard-activity {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .leaderboard-page > h1 {
+        font-size: 28px;
+    }
+
+
+    .leaderboard-card {
+
+        grid-template-columns:
+            50px
+            55px
+            1fr;
+
+        padding: 15px;
+    }
+
+
+    .leaderboard-level {
+        display: none;
+    }
+
+
+    .leaderboard-score {
+        grid-column: 2 / 4;
+        text-align: left;
+    }
+
+}

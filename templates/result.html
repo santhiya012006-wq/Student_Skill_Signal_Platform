@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Profile | Student Skill Platform</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <h2>Student Skill Platform</h2>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/analyze">Analyze</a>
+
+        <a href="/leaderboard">Leaderboard</a>
+
+    </div>
+
+</nav>
+
+
+<!-- PROFILE -->
+
+<section class="result-page">
+
+    <div class="profile-card">
+
+        <img
+            src="{{ profile.avatar }}"
+            alt="GitHub Profile Image"
+            class="profile-image"
+        >
+
+
+        <div class="profile-info">
+
+            <h1>{{ profile.name }}</h1>
+
+            <p class="github-username">
+
+                @{{ profile.username }}
+
+            </p>
+
+            <p class="bio">
+
+                {{ profile.bio }}
+
+            </p>
+
+
+            <div class="profile-stats">
+
+                <div class="stat">
+
+                    <h3>
+                        {{ profile.public_repos }}
+                    </h3>
+
+                    <p>Repositories</p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <h3>
+                        {{ profile.followers }}
+                    </h3>
+
+                    <p>Followers</p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <h3>
+                        {{ profile.following }}
+                    </h3>
+
+                    <p>Following</p>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ profile.profile_url }}"
+                target="_blank"
+                rel="noopener"
+                class="button"
+            >
+                View GitHub Profile
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SKILL INDEX -->
+
+<section class="skill-index-section">
+
+    <h2>Student Skill Index</h2>
+
+    <div class="skill-index-card">
+
+
+        <div class="main-score">
+
+            <h1>
+
+                {{ profile.skill_index }}
+
+            </h1>
+
+            <p>out of 100</p>
+
+            <div class="skill-level">
+
+                {{ profile.skill_level }}
+
+            </div>
+
+        </div>
+
+
+        <div class="score-details">
+
+
+            <div class="score-item">
+
+                <div>
+
+                    <h3>Repository Activity</h3>
+
+                    <p>Based on number of projects</p>
+
+                </div>
+
+                <strong>
+
+                    {{ profile.repository_score }}/30
+
+                </strong>
+
+            </div>
+
+
+            <div class="score-item">
+
+                <div>
+
+                    <h3>Technology Stack</h3>
+
+                    <p>Based on detected languages</p>
+
+                </div>
+
+                <strong>
+
+                    {{ profile.technology_score }}/30
+
+                </strong>
+
+            </div>
+
+
+            <div class="score-item">
+
+                <div>
+
+                    <h3>GitHub Engagement</h3>
+
+                    <p>Based on repository stars</p>
+
+                </div>
+
+                <strong>
+
+                    {{ profile.star_score }}/20
+
+                </strong>
+
+            </div>
+
+
+            <div class="score-item">
+
+                <div>
+
+                    <h3>GitHub Presence</h3>
+
+                    <p>Based on followers</p>
+
+                </div>
+
+                <strong>
+
+                    {{ profile.follower_score }}/10
+
+                </strong>
+
+            </div>
+
+
+            <div class="score-item">
+
+                <div>
+
+                    <h3>Profile Completeness</h3>
+
+                    <p>Name, bio and profile details</p>
+
+                </div>
+
+                <strong>
+
+                    {{ profile.profile_score }}/10
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section class="dashboard-section">
+
+    <h2>Skill Analysis Dashboard</h2>
+
+
+    <div class="dashboard-summary">
+
+
+        <div class="dashboard-box">
+
+            <h3>
+
+                {{ profile.skill_index }}/100
+
+            </h3>
+
+            <p>Skill Index</p>
+
+        </div>
+
+
+        <div class="dashboard-box">
+
+            <h3>
+
+                {{ profile.skill_level }}
+
+            </h3>
+
+            <p>Skill Level</p>
+
+        </div>
+
+
+        <div class="dashboard-box">
+
+            <h3>
+
+                {{ profile.total_commits }}
+
+            </h3>
+
+            <p>Recent Commits</p>
+
+        </div>
+
+
+        <div class="dashboard-box">
+
+            <h3>
+
+                {{ languages|length }}
+
+            </h3>
+
+            <p>Technologies</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="charts-container">
+
+
+        <div class="chart-card">
+
+            <h3>Skill Score Breakdown</h3>
+
+            <canvas id="skillChart"></canvas>
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h3>Skill Index Overview</h3>
+
+            <canvas id="indexChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMMIT ACTIVITY -->
+
+<section class="activity-section">
+
+    <h2>Commit Activity Analysis</h2>
+
+
+    <div class="activity-card">
+
+
+        <div class="activity-main">
+
+            <h1>
+
+                {{ profile.total_commits }}
+
+            </h1>
+
+            <p>Commits in the Last 30 Days</p>
+
+        </div>
+
+
+        <div class="activity-information">
+
+
+            <div class="activity-item">
+
+                <span>Activity Score</span>
+
+                <strong>
+
+                    {{ profile.activity_score }}/20
+
+                </strong>
+
+            </div>
+
+
+            <div class="activity-item">
+
+                <span>Activity Level</span>
+
+                <strong class="activity-level">
+
+                    {{ profile.activity_level }}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LANGUAGES -->
+
+<section class="skills-section">
+
+    <h2>Detected Programming Skills</h2>
+
+
+    <div class="skills-container">
+
+        {% if languages %}
+
+            {% for language in languages %}
+
+                <div class="skill-tag">
+
+                    {{ language }}
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No programming languages detected.</p>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- REPOSITORIES -->
+
+<section class="repositories-section">
+
+    <h2>Student Projects</h2>
+
+
+    <div class="repositories-container">
+
+        {% for repo in repositories %}
+
+            <div class="repository-card">
+
+
+                <h3>
+
+                    {{ repo.name }}
+
+                </h3>
+
+
+                <p class="repo-description">
+
+                    {{ repo.description or "No description available." }}
+
+                </p>
+
+
+                <div class="repo-details">
+
+                    <span>
+
+                        💻 {{ repo.language or "Unknown" }}
+
+                    </span>
+
+                    <span>
+
+                        ⭐ {{ repo.stars }}
+
+                    </span>
+
+                    <span>
+
+                        🍴 {{ repo.forks }}
+
+                    </span>
+
+                    <span>
+
+                        🔄 {{ repo.commits }} recent commits
+
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="{{ repo.url }}"
+                    target="_blank"
+                    rel="noopener"
+                    class="repo-button"
+                >
+
+                    View Repository
+
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- CHART.JS -->
+
+<<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Get Flask/Jinja values
+    const repositoryScore = Number("{{ profile.repository_score|default(0) }}");
+    const technologyScore = Number("{{ profile.technology_score|default(0) }}");
+    const starScore = Number("{{ profile.star_score|default(0) }}");
+    const followerScore = Number("{{ profile.follower_score|default(0) }}");
+    const profileScore = Number("{{ profile.profile_score|default(0) }}");
+    const skillIndex = Number("{{ profile.skill_index|default(0) }}");
+
+
+    // -----------------------------
+    // SKILL SCORE BAR CHART
+    // -----------------------------
+    const skillChartElement = document.getElementById("skillChart");
+
+    if (skillChartElement) {
+
+        new Chart(skillChartElement, {
+
+            type: "bar",
+
+            data: {
+
+                labels: [
+                    "Repository",
+                    "Technology",
+                    "Engagement",
+                    "Presence",
+                    "Profile"
+                ],
+
+                datasets: [{
+
+                    label: "Score",
+
+                    data: [
+                        repositoryScore,
+                        technologyScore,
+                        starScore,
+                        followerScore,
+                        profileScore
+                    ],
+
+                    borderRadius: 8
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                scales: {
+
+                    y: {
+                        beginAtZero: true,
+                        max: 30
+                    }
+                }
+            }
+        });
+    }
+
+
+    // -----------------------------
+    // SKILL INDEX DOUGHNUT CHART
+    // -----------------------------
+    const indexChartElement = document.getElementById("indexChart");
+
+    if (indexChartElement) {
+
+        new Chart(indexChartElement, {
+
+            type: "doughnut",
+
+            data: {
+
+                labels: [
+                    "Current Score",
+                    "Remaining"
+                ],
+
+                datasets: [{
+
+                    data: [
+                        skillIndex,
+                        Math.max(0, 100 - skillIndex)
+                    ],
+
+                    borderWidth: 0
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                cutout: "70%"
+            }
+        });
+    }
+
+});
+</script>
+
+</body>
+</html>
+
+
+</body>
+
+</html>
