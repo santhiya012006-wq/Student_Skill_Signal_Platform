@@ -170,11 +170,10 @@ def analyze():
                     error=f"GitHub access error. Rate limit remaining: {remaining}"
                 )
 
-            if response.status_code != 200:
-                return render_template(
-                   "analyze.html",
-                    error=f"GitHub API error: {response.status_code}"
-                )
+            if repos_response.status_code != 200:
+                repos_data = []
+            else:
+                repos_data = repos_response.json()
 
 
             # -----------------------------
