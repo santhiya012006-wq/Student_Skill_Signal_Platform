@@ -1,10 +1,16 @@
 from flask import Flask, render_template, request
 import requests
-import sqlite3
+import os
 from datetime import datetime, timedelta, timezone
 
 app = Flask(__name__)
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
+headers = {}
+
+if GITHUB_TOKEN:
+    headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+    headers["Accept"] = "application/vnd.github+json"
 
 # -----------------------------
 # DATABASE FUNCTIONS
@@ -136,7 +142,7 @@ def analyze():
 
             repos_response = requests.get(
                 repos_url,
-                headers=GITHUB_HEADERS,
+                headers=headers,
                 params={
                     "per_page": 100,
                     "sort": "updated",
@@ -211,7 +217,7 @@ def analyze():
 
                     commits_response = requests.get(
                         commits_url,
-                        headers=GITHUB_HEADERS,
+                        headers=headers,
                         params={
                             "since": since_date,
                             "per_page": 100
