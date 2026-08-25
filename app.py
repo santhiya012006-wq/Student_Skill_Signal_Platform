@@ -555,14 +555,13 @@ def analyze():
             )
 
 
-        except Exception as error:
+        except Exception as e:
+          print("UNEXPECTED ERROR:", str(e))
 
-            print("Application Error:", error)
-
-            return render_template(
-                "analyze.html",
-                error="An unexpected error occurred. Please try again."
-            )
+          return render_template(
+             "analyze.html",
+             error=f"Error: {str(e)}"
+          )
 
 
     # -----------------------------
