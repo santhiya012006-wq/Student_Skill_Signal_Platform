@@ -154,17 +154,27 @@ def analyze():
             )
 
 
-            if repos_response.status_code == 403:
+            if response.status_code == 404:
+                   return render_template(
+                          "analyze.html",
+                          error="GitHub username not found."
+                    )
+
+
+            if response.status_code == 403:
+                remaining = response.headers.get("X-RateLimit-Remaining")
+                reset = response.headers.get("X-RateLimit-Reset")
+
                 return render_template(
                     "analyze.html",
-                    error="GitHub API rate limit reached while fetching repositories."
+                    error=f"GitHub access error. Rate limit remaining: {remaining}"
                 )
 
-
-            if repos_response.status_code == 200:
-                repos_data = repos_response.json()
-            else:
-                repos_data = []
+            if response.status_code != 200:
+                return render_template(
+                   "analyze.html",
+                    error=f"GitHub API error: {response.status_code}"
+                )
 
 
             # -----------------------------
