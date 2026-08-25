@@ -6,9 +6,8 @@ from datetime import datetime, timedelta, timezone
 app = Flask(__name__)
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
-headers = {
-    "Accept": "application/vnd.github+json"
-}
+headers = {}
+
 
 if GITHUB_TOKEN:
     headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
