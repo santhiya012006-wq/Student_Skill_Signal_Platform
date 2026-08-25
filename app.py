@@ -5,23 +5,25 @@ import os
 from datetime import datetime, timedelta, timezone
 app = Flask(__name__)
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-
-headers = {}
-
+print("GitHub token available:", bool(GITHUB_TOKEN))
+GITHUB_HEADERS = {
+    "Accept": "application/vnd.github+json"
+}
 
 if GITHUB_TOKEN:
-    headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
-headers["Accept"] = "application/vnd.github+json"
+    GITHUB_HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+
+# -----------------------------
+# DATABASE CONFIGURATION
+# -----------------------------
+DATABASE = "students.db"
 # -----------------------------
 # DATABASE FUNCTIONS
 # -----------------------------
 def get_db_connection():
-
-    connection = sqlite3.connect("students.db")
-
-    connection.row_factory = sqlite3.Row
-
-    return connection
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 def create_database():
@@ -103,7 +105,7 @@ def analyze():
 
             response = requests.get(
                 github_url,
-                headers=headers,
+                headers=GITHUB_HEADERS,
                 timeout=10
             )
 
@@ -142,7 +144,7 @@ def analyze():
 
             repos_response = requests.get(
                 repos_url,
-                headers=headers,
+                headers=GITHUB_HEADERS,
                 params={
                     "per_page": 100,
                     "sort": "updated"
@@ -217,7 +219,7 @@ def analyze():
 
                     commits_response = requests.get(
                         commits_url,
-                        headers=headers,
+                        headers=GITHUB_HEADERS,
                         params={
                             "since": since_date,
                             "per_page": 100
